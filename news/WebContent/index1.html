@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>主页</title>
+<script type="text/javascript" src="scripts/jquery.js"></script>
+
+<style type="text/css">
+.js-load-more{
+    padding:0 15px;
+    width:120px;
+    height:30px;
+    background-color:#D31733;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    border-radius:5px;
+    margin:20px auto;
+    border:0 none;
+    font-size:16px;
+    display:none;/*默认不显示，ajax调用成功后才决定显示与否*/
+}
+</style>
+<script type="text/javascript">
+function getData(config, offset,size){
+
+    config.isAjax = true;
+
+    $.ajax({
+        type: 'GET',
+        url: 'json/blog.json',
+        dataType: 'json',
+        success: function(reponse){
+        
+            config.isAjax = false;
+
+            var data = reponse.list;
+            var sum = reponse.list.length;
+            
+            var result = '';
+            
+            /************业务逻辑块：实现拼接html内容并append到页面*****************/
+            
+            //console.log(offset , size, sum);
+            
+            /*如果剩下的记录数不够分页，就让分页数取剩下的记录数
+            * 例如分页数是5，只剩2条，则只取2条
+            *
+            * 实际MySQL查询时不写这个
+            */
+            if(sum - offset < size ){
+                size = sum - offset;
+            }
+
+            
+            /*使用for循环模拟SQL里的limit(offset,size)*/
+            for(var i=offset; i< (offset+size); i++){
+                result +='<div class="weui_media_box weui_media_text">'+
+                        '<a href="'+ data[i].url +'" target="_blank"><h4 class="weui_media_title">'+ data[i].title +'</h4></a>'+
+                        '<p class="weui_media_desc">'+ data[i].desc +'</p>'+
+                    '</div>';
+            }
+
+            $('.js-blog-list').append(result);
+            
+            /*******************************************/
+            
+            /*隐藏more*/
+            if ( (offset + size) >= sum){
+                $(".js-load-more").hide();
+                config.isEnd = true; /*停止滚动加载请求*/
+                //提示没有了
+            }else{
+                $(".js-load-more").show();
+            }
+        },
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    });
+}
+
+$.loadmore.get(getData, {
+    scroll: true,  //默认是false,是否支持滚动加载
+    size:7,  //默认是10
+    flag: 1, //自定义参数，可选，示例里没有用到
+});
+
+</script>
+
+
+
+
+</head>
+
+
+
+
+ 
+<body>
+
+<div class="content">
+    <div class="weui_panel weui_panel_access">
+        <div class="weui_panel_hd">文章列表</div>
+        <div class="weui_panel_bd js-blog-list">
+           
+        </div>
+    </div>
+    
+    <!--加载更多按钮-->
+    <div class="js-load-more">加载更多</div>
+    
+</div>
+
+
+    
+    
+    
+ 
+</body>
+
+</html>

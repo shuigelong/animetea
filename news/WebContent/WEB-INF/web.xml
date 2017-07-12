@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>servlet.register</servlet-class>
+     </servlet>
+   
+    <servlet>
+     <servlet-name>login</servlet-name>
+     <servlet-class>servlet.login</servlet-class>
+   </servlet>
+  
+    <servlet>
+       <servlet-name>news</servlet-name>
+       <servlet-class>servlet.news</servlet-class>
+    </servlet>
+    <servlet>
+      <servlet-name>upnewsdata</servlet-name>
+      <servlet-class>servlet.upnewsdata</servlet-class>
+    </servlet>
+    <servlet>
+       <servlet-name>changepwd</servlet-name>
+       <servlet-class>servlet.changepwd</servlet-class>
+    </servlet>
+    <servlet>
+       <servlet-name>changerole</servlet-name>
+       <servlet-class>servlet.changerole</servlet-class>
+    </servlet>
+ <servlet>
+        <servlet-name>upphoto</servlet-name>
+        <servlet-class>servlet.upphoto</servlet-class>
+     </servlet>
+ <servlet>
+        <servlet-name>detial</servlet-name>
+        <servlet-class>servlet.detial</servlet-class>
+     </servlet>
+ <servlet>
+        <servlet-name>infornation</servlet-name>
+        <servlet-class>servlet.infornation</servlet-class>
+     </servlet>
+ <servlet>
+        <servlet-name>newslist</servlet-name>
+        <servlet-class>servlet.newslist</servlet-class>
+     </servlet>
+ 
+ 
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/servlet/register</url-pattern>
+     </servlet-mapping>
+     
+      <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/servlet/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>news</servlet-name>
+        <url-pattern>/servlet/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>upnewsdata</servlet-name>
+        <url-pattern>/servlet/upnewsdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changepwd</servlet-name>
+        <url-pattern>/servlet/changepwd</url-pattern>
+     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>changerole</servlet-name>
+        <url-pattern>/servlet/changerole</url-pattern>
+     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>upphoto</servlet-name>
+        <url-pattern>/servlet/upphoto</url-pattern>
+     </servlet-mapping>
+<servlet-mapping>
+        <servlet-name>detial</servlet-name>
+        <url-pattern>/servlet/detial</url-pattern>
+     </servlet-mapping>     
+  <servlet-mapping>
+        <servlet-name>infornation</servlet-name>
+        <url-pattern>/servlet/infornation</url-pattern>
+     </servlet-mapping>   
+  <servlet-mapping>
+        <servlet-name>newslist</servlet-name>
+        <url-pattern>/servlet/newslist</url-pattern>
+     </servlet-mapping>   
+     
+     
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
